@@ -1,0 +1,10 @@
+{
+
+    "database_filename": "data/db.json",
+    "docx_files_dirname": "data/osf",
+    "run_id": "01C099E2F9FA11EC98110A58A9FEAC02",
+    "protocol_id": "standards-compliant-general-protocol-for-systemati-n92ldydzxl5b",
+    "template_filename": "templates/sample_template_a.docx",
+    "output_filename": "output/generated_doc.docx"
+
+}
