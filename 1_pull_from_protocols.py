@@ -63,19 +63,20 @@ for step in steps:
     if typ == "notes":
         # Join the text together as paragraphs.  Not certain this will cover all cases
         # but it should get the main use-case of the notes field.
-        value = "\n\n".join([x["text"] for x in input_data["data"]["blocks"]])
+        db[key] = "\n\n".join([x["text"] for x in input_data["data"]["blocks"]])
 
     if typ == "smart_component":
-        # A dict built out of the key-value input boxes in this component
-        value = {a['name']: a['value'] for a in input_data["data"]["fields"]}
+        # Read each key as a unique top-level key
+        for a in input_data["data"]["fields"]:
+
+            key = re.search("\[(.+)\]", a['name'])
+            if key is None:
+                continue
+            db[key.group(1)] = a['value']
 
     if typ == "link":
         # A link
-        value = input_data["data"]["url"]
-
-    # Assign this to the data store
-    logger.debug("Assigning %s = %s", key, value)
-    db[key] = value
+        db[key] = input_data["data"]["url"]
 
 
 # Write to disk
