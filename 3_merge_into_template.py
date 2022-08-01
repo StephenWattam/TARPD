@@ -84,8 +84,8 @@ class DocxReplacementTemplateEngine:
                 para.text = f"{text_before}{value}{text_after}"
 
             # print(f"-> {para.text}")
-            if para.text.startswith("[osf:") and para.text.endswith("]"):
-                filename = f"{self.source_dir}/{para.text[5:-1].strip()}"
+            if para.text.startswith("[") and para.text.endswith("]"):
+                filename = f"{self.source_dir}/{para.text[1:-1].strip()}"
                 logger.info(f"Inserting document '{filename}'")
                 documents_to_append.append(filename)
 
@@ -126,6 +126,6 @@ with open(config["database_filename"]) as fin:
     db = json.load(fin)
 
 logger.info(f"Using template at {config['template_filename']}")
-template_engine = DocxReplacementTemplateEngine("data/osf", db)
+template_engine = DocxReplacementTemplateEngine(config['docx_files_dirname'], db)
 template_engine.replace(config['template_filename'], config['output_filename'])
 logger.info(f"Success.  Output can be found at {config['output_filename']}")
