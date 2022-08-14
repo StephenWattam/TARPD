@@ -16,10 +16,8 @@ The code is structured as a set of scripts to run in-order.  These tools are con
 
 ## TODO / Further Work
 
- - OSF authentication is unreliable so currently files are retrieved from disklogging.basicConfig()
-
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.DEBUG)
+ - OSF authentication is unreliable so currently files are retrieved from disk
+ - Templating for MS Word is very limited due to poor library support for the format
 
 
 ## License
